@@ -191,7 +191,7 @@ int32_t codepoint_at(char str[], int32_t cpi) {
 
 char is_animal_emoji_at(char str[], int32_t cpi) {
     int32_t codepoint = codepoint_at(str, cpi);
-    return (codepoint == 0x1F408 || codepoint == 0x1F42E);
+    return (codepoint == 0x1F429 || codepoint == 0x1F408); // 🐩 and 🐈
 }
 
 void next_utf8_char(char str[], int32_t cpi, char result[]) {
