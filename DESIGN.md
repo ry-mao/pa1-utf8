@@ -1,0 +1,5 @@
+1) The 3-byte sequence 11100000 10000000 10100001 encodes the UTF-8 character U+20001, which corresponds to the CJK ideograph 𠀁.
+2) The character U+20001 can also be represented in different encodings: in UTF-16 as 0xD840 0xDC01, in UTF-32 as 0x00020001, and in an overlong UTF-8 encoding (which is generally discouraged) as C0 80 80 01.
+3) Give an example of a character that has exactly three encodings (but not four).
+An example of a character that has exactly three encodings is the Euro sign (€) (U+20AC). It can be encoded in UTF-8 as E2 82 AC (3 bytes), in UTF-16 as 0x20AC (2 bytes), and in UTF-32 as 0x000020AC (4 bytes).
+4) The existence of multiple encodings can lead to confusion and inconsistencies in text processing. For ASCII characters, overlong UTF-8 encoding can create security vulnerabilities by allowing potential bypasses in validation checks, which increases the risk of injection attacks. Additionally, handling various encodings complicates data processing and raises the likelihood of bugs and misinterpretations across different systems.
