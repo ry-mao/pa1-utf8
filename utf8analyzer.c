@@ -52,15 +52,17 @@ void analyze_utf8(const char *input) {
     printf("length in bytes: %d\n", length);
     printf("number of code points: %d\n", num_code_points);
 
-    printf("bytes per code point: ");
-    for (int32_t i = 0; i < num_code_points; i++) {
-        int32_t byte_index = codepoint_index_to_byte_index((char *)input, i);
-        if (byte_index >= 0) {
-            int width = width_from_start_byte(input[byte_index]);
+    printf("Bytes per code point: ");
+for (int32_t i = 0; i < num_code_points; i++) {
+    int32_t byte_index = codepoint_index_to_byte_index((char *)input, i);
+    if (byte_index >= 0) {
+        int width = width_from_start_byte(input[byte_index]);
+        if (width > 0) { // Only print valid widths
             printf("%d ", width);
         }
     }
-    printf("\n");
+}
+printf("\n");
 
     char substring[MAX_INPUT_SIZE];
     utf8_substring((char *)input, 0, num_code_points < 6 ? num_code_points : 6, substring);
@@ -157,7 +159,7 @@ void utf8_substring(char str[], int32_t cpi_start, int32_t cpi_end, char result[
     int32_t byte_index_end = codepoint_index_to_byte_index(str, cpi_end);
 
     if (byte_index_start < 0 || byte_index_end < 0) {
-        result[0] = '\0'; // error in indices
+        result[0] = '\0'; //error in indices
         return;
     }
 
