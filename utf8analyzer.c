@@ -157,17 +157,20 @@ int32_t codepoint_index_to_byte_index(const char str[], int32_t cpi) {
     return -1; //code point index out of range
 }
 
-void utf8_substring(const char str[], int32_t cpi_start, int32_t cpi_end, char result[]) {
+void utf8_substring(char str[], int32_t cpi_start, int32_t cpi_end, char result[]) {
+    //check for invalid inputs
     if (cpi_start < 0 || cpi_end <= cpi_start) {
-        result[0] = '\0'; //invalid input
+        result[0] = '\0'; //set result to empty string
         return;
     }
 
+    //find the byte index for the start and end code points
     int32_t byte_index_start = codepoint_index_to_byte_index(str, cpi_start);
     int32_t byte_index_end = codepoint_index_to_byte_index(str, cpi_end);
 
+    //check for invalid byte indices
     if (byte_index_start < 0 || byte_index_end < 0) {
-        result[0] = '\0'; //error in indices
+        result[0] = '\0'; // set result to empty string
         return;
     }
 
@@ -176,7 +179,7 @@ void utf8_substring(const char str[], int32_t cpi_start, int32_t cpi_end, char r
         byte_index_end = strlen(str);
     }
 
-    //copy substring
+    //copy the substring from the original string
     int j = 0;
     for (int i = byte_index_start; i < byte_index_end; i++) {
         result[j++] = str[i];
